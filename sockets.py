@@ -87,16 +87,46 @@ def read_ws(ws,client):
             else:
                 break
     except:
-        '''NOTHING'''
-    return ws.receive()
+        '''DONE'''
+
+clients = list()
+gevents = list()
+
+def setup():
+    global gevents
+
+def send_all(msg):
+    for client in clients:
+        client.put(msg)
+
+def send_all_json(obj):
+    send_all(json.dumps(obj))
+
+class Client:
+    def __init__(self):
+        self.queue = queue.Queue()
+    def put(self, v):
+        self.queue.put_nowait(v)
+    def get(self):
+        return self.queue.get()
 
 @sockets.route('/subscribe')
 def subscribe_socket(ws):
     '''Fulfill the websocket URL of /subscribe, every update notify the
        websocket and read updates from the websocket '''
     # XXX: TODO IMPLEMENT ME
-    return read_ws(ws, myWorld)
-
+    client = Client()
+    clients.append(client)
+    g = gevent.spawn( read_ws, ws, client)
+    try:
+        while True:
+            msg = client.get()
+            ws.send(msg)
+    except Exception as e:
+        print "Error %s" % e
+    finally:
+        clients.remove(client)
+        gevent.kill(g)
 
 def flask_post_json():
     '''Ah the joys of frameworks! They do so much work for you
