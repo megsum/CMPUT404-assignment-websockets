@@ -56,4 +56,8 @@ Contributors
 ============
 
 * Mark Galloway
-* Abram Hindle
+* Abram Hindle  
+
+Sources  
+=======  
+https://github.com/abramhindle/WebSocketsExamples/blob/master/broadcaster.py  
