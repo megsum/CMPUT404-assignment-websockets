@@ -68,7 +68,7 @@ def set_listener( entity, data ):
     myWorld.set(entity, data)
 
 myWorld.add_set_listener( set_listener )
-        
+     
 @app.route('/')
 def hello():
     '''Return something coherent here.. perhaps redirect to /static/index.html '''
