@@ -61,4 +61,4 @@ Contributors
 Sources  
 =======  
 https://github.com/abramhindle/WebSocketsExamples/blob/master/broadcaster.py  
-https://github.com/sensible-heart/CMPUT404-assignment-websockets/blob/master/sockets.py  
+https://github.com/vanbelle/CMPUT404-assignment-websockets/blob/master/static/index.html  
