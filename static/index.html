@@ -125,10 +125,10 @@ function addEntity(entity, data) {
     world[entity] = data;
     var send_dict = {}
     send_dict[entity] = data;
-    
     // drawNextFrame(); // (but should we?)
     //XXX: Send a XHTML Request that updates the entity you just modified!
     socket.send(JSON.stringify(send_dict));
+    update();
 }
 
 var counter = 0;
@@ -258,7 +258,8 @@ function wsSetup() {
     socket = new WebSocket(url);
     socket.onopen = function() {
         //XXX: TODO What are you going to do here?
-	 	  // Do nothing? 
+	 	  // Do nothing?
+	 	  update(); 
     };
     socket.onerror = function(msg) {
         debug("WebSocket Error:" + msg.data);
