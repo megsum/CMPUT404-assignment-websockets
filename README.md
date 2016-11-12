@@ -62,3 +62,4 @@ Sources
 =======  
 https://github.com/abramhindle/WebSocketsExamples/blob/master/broadcaster.py  
 https://github.com/vanbelle/CMPUT404-assignment-websockets/blob/master/static/index.html  
+http://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
