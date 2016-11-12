@@ -53,8 +53,13 @@ function drawCircle(context,entity) {
         var y = entity["y"];
         //moveTo(x,y);
         fillStyle = entity["colour"];
+        var text = ""
+        var possible = 'abcdefghijklmnopqrstuvwxyz';
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
         strokeStyle = fillStyle;
-        arc(x, y, (entity["radius"])?entity["radius"]:50, 0, 2.0 * Math.PI, false);  
+        font="100px Georgia";
+        strokeText(text,x,y);
+        // arc(x, y, (entity["radius"])?entity["radius"]:50, 0, 2.0 * Math.PI, false);  
         stroke();                                
     }
 }
@@ -236,16 +241,19 @@ mouse = (function() {
 // Add the application specific mouse listeners!
 //XXX: TODO Make these prettier!
 mouse.mousedowners.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'blue'});
+	 var c = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+    addEntityWithoutName({'x':x,'y':y,'colour':c});
 });
 
 mouse.mouseuppers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'red'});
+	 var c = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+    addEntityWithoutName({'x':x,'y':y,'colour':c});
 });
 
 mouse.mousedraggers.push(function(x,y,clicked,e) {
-    addEntityWithoutName({'x':x,'y':y,'colour':'green',
-                          'radius':10});
+	 var c = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+    addEntityWithoutName({'x':x,'y':y,'colour':c,
+                         'radius':10});
 });
 
 function update() {
