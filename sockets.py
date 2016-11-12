@@ -65,7 +65,8 @@ myWorld = World()
 
 def set_listener( entity, data ):
     ''' do something with the update ! '''
-    myWorld.set(entity, data)
+    # myWorld.set(entity, data)
+    send_all_json({entity:data})
 
 myWorld.add_set_listener( set_listener )
      
@@ -80,20 +81,16 @@ def read_ws(ws,client):
     try:
         while True:
             msg = ws.receive()
-            print "WS RECV: %s" % msg
+            print "WS RECV: %s" % msg 
             if (msg is not None):
                 packet = json.loads(msg)
-                send_all_json( packet )
+                myWorld.set(packet.keys()[0],packet.values()[0])
             else:
                 break
     except:
         '''DONE'''
 
 clients = list()
-gevents = list()
-
-def setup():
-    global gevents
 
 def send_all(msg):
     for client in clients:
@@ -142,11 +139,7 @@ def flask_post_json():
 def update(entity):
     '''update the entities via this interface'''
     r = json.loads(request.data)
-    if len(r) > 0:
-        for k,v in r.items():
-            value = v
-            key = k
-            myWorld.update(entity, key, value)
+    myWorld.set(entity, r)
     return flask.jsonify(myWorld.get(entity))
 
 @app.route("/world", methods=['POST','GET'])    
