@@ -57,6 +57,8 @@ Contributors
 
 * Mark Galloway
 * Abram Hindle  
+* Megan Sumner
+* Leah Olexson
 
 Sources  
 =======  
